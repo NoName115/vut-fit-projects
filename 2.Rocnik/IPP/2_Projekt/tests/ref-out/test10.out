@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model>
+    <class name="A" kind="abstract">
+        <private>
+            <methods>
+                <method name="f" type="int" scope="instance">
+                    <virtual pure="yes" />
+                    <arguments></arguments>
+                </method>
+            </methods>
+        </private>
+    </class>
+    <class name="B" kind="abstract">
+        <inheritance>
+            <from name="A" privacy="private" />
+        </inheritance>
+        <public>
+            <attributes>
+                <attribute name="var" type="int" scope="instance" />
+            </attributes>
+        </public>
+    </class>
+    <class name="C" kind="concrete">
+    </class>
+    <class name="D" kind="abstract">
+        <inheritance>
+            <from name="B" privacy="protected" />
+            <from name="C" privacy="private" />
+        </inheritance>
+        <protected>
+            <attributes>
+                <attribute name="var" type="int" scope="instance">
+                    <from name="B" />
+                </attribute>
+            </attributes>
+        </protected>
+    </class>
+</model>

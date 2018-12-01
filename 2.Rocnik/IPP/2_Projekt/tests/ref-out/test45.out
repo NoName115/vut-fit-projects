@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<class kind="concrete" name="C">
+    <inheritance>
+        <from name="B" privacy="public"/>
+    </inheritance>
+    <private>
+        <attributes>
+            <attribute name="x" scope="instance" type="int">
+                <from name="A"/>
+            </attribute>
+        </attributes>
+    </private>
+</class>

@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<class kind="concrete" name="A">
+    <private>
+        <methods>
+            <method name="f" scope="instance" type="int">
+                <arguments/>
+            </method>
+        </methods>
+        <attributes>
+            <attribute name="x" scope="instance" type="int"/>
+        </attributes>
+    </private>
+    <public>
+        <methods>
+            <method name="f2" scope="instance" type="int">
+                <arguments/>
+            </method>
+        </methods>
+        <attributes>
+            <attribute name="z" scope="instance" type="int"/>
+            <attribute name="y" scope="instance" type="int"/>
+        </attributes>
+    </public>
+    <protected>
+        <methods>
+            <method name="f1" scope="instance" type="int">
+                <arguments/>
+            </method>
+        </methods>
+    </protected>
+</class>

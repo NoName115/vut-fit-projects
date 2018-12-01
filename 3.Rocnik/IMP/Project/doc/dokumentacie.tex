@@ -1,0 +1,57 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[slovak]{babel}
+\usepackage{geometry}
+\usepackage{url}
+
+\geometry{a4paper, left=25mm, right=25mm, top=20mm}
+\bibliographystyle{czplain}
+
+\begin{document}
+
+\title{ESP8266: snímání teploty (IoT, cloud) - IMP 2016/2017}
+\author{Róbert Kolcún, xkolcu00}
+\maketitle
+
+\section{Cieľ projektu}
+Cieľom projektu je vytvoriť jednoduchý systém pre snímanie a následné zobrazovanie teploty.
+Pre projekt je použité zariadenia ESP8266 a teplotním čidlom DS18B20.
+Ako klient ma vystupovať zariadenie ktoré sníma teplotu a tieto hodnoty zasiela na server.
+Server tieto hodnoty zberá, aj od niekoľkých zariadení naraz, následne umožnuje ich zobrazenie za pomoci jednoduchej webovej stránky.
+
+\section{Popis ovládania}
+\subsection{ESP8266}
+Pre plnú funkcionalitu je potrebné na zariadenie nahrať micropython \cite{odkaz:micropython} a následne súbory
+z odovzdaného archívu \textit{boot.py} a \textit{esp\_class.py}
+
+Script \textit{boot.py} zabezpečuje spustenie merania teploty pri zapnutí zariadenia
+alebo po jeho resetovaní.
+
+Následne súbor \textit{esp\_class.py}, kde je implementovaná celá funkcionalita zariadenia.
+Pre správne fungovanie je následne už len potrebné editovať triedu v súbore \textit{esp\_class.py} kde je potrebné
+nastaviť meno, heslo Wi-Fi, IPv4 adresu a číslo portu na ktoré sa ma zariadenia pripojiť a zasielať dáta o teplote.
+
+\subsection{Server}
+Funkcionálna časť servera je implementovaná v súboroch \textit{http\_server.py} a \textit{server.py},
+pre spustenie webového servera a socket server stačí sputiť script \textit{main.py}, ktorý spustí paralelne 2 procesy, každý pre daný server.
+
+Pre zmenu portu na socket servery je potrebné upraviť premennu PORT v súbore \textit{server.py} a pre IP adresu a port na ktorom
+má bežat http server je potrebne upraviť premenné PORT\_NUMBER a HOST\_IP v súbore \textit{http\_server.py}.
+
+\section{Bezpečnosť}
+Zariadenia zasiela na server 2 informácie svoje ID a teplotu, táto komunikácia nieje nijak šifrovaná ani zabezpečená.
+Pre účeli demoštrácie si zariadenia vygeneruje svoje ID náhodne.
+
+V reálnom použití by bolo potrebné každé zariadenia pripojené do siete identifikovať unikátnym ID.
+Pre bezbečnú komunikácia medzi serverom a klientom by bolo možné použiť TLS/SSL protokol, avšak nevýhoda tohto protokolu
+je že funguje iba nad TCP, preto existuje verzia tohto protokolu pracujúca nad UDP a to DTLS\cite{odkaz:iotsecurity}.
+
+Taktiež by bolo vhodné použiť cloude systémi ako npr. AWS od Amazonu ktoré majú priamu podporu
+pre IoT zariadenia, kde podporujú aj komunikačné protokoly ako MQTT ktoré boli navrhnuté špecificky pre IoT svet.
+Tieto systému disponujú a riešia bezpečnosť komunikacie pomocou podpisovania správ.
+
+\renewcommand\refname{Odkazy}
+\bibliography{literatura}
+
+\end{document}

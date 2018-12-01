@@ -1,0 +1,7 @@
+class Aclass {virtual int a_b_c_0(void) =0;};
+class classB : Aclass {
+public:
+    int Aa_00_b;
+};
+class a011a {};
+class ____ : protected classB, a011a {};

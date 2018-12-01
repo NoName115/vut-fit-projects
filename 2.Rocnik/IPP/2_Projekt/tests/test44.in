@@ -1,0 +1,11 @@
+class A{
+    public:
+    int x;
+};
+
+class B: public A{
+};
+
+class C: public A, public B{
+  int x;
+};

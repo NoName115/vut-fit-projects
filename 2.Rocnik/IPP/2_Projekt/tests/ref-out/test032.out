@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<model>
+    <class kind="concrete" name="A">
+        <class kind="concrete" name="B"/>
+    </class>
+</model>

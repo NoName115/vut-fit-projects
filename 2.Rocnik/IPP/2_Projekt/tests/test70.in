@@ -1,0 +1,6 @@
+class A
+{
+    int f(int a) {};
+    int f1(unsigned int * a){};
+    int f(int a, int f, char b, int cc) {};
+};

@@ -1,0 +1,2 @@
+rem java -classpath "jexamxml.jar" com.a7soft.examxml.ExamXML samples\orders.xml samples\orders1.xml samples\delta.xml /D samples\options
+rem java -jar jexamxml.jar samples\orders.xml samples\orders1.xml samples\delta.xml /D samples\options

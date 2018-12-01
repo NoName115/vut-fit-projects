@@ -1,0 +1,10 @@
+class A{
+    private:
+    virtual int f()=0;
+};
+
+class B: private A{
+};
+
+class C: private B{
+};

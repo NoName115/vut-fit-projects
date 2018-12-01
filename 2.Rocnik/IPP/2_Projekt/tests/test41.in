@@ -1,0 +1,11 @@
+class A{
+    public:
+    int f(int x1, int x2) {};
+    int f(double x1) {};
+};
+
+class B: public A{
+    protected:
+    using A::f;
+
+};

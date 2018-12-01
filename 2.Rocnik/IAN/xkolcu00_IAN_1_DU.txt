@@ -1,0 +1,119 @@
+Pomocou nastroja gdb si otvorim pripraveny coredump  $ gdb top vmcore  .
+
+Vypisem si stack  (gdb) bt  z coho zistim na ktorej funkcii program padol
+#0  0x00007f918c72447a in __strcmp_sse2_unaligned () from /lib64/libc.so.6
+nasledne zistim aj presnu intrukciu kde program padol
+(gdb) disassemble 0x00007f918c72447a
+	   ...
+	   0x00007f918c724474 <+20>:	jg     0x7f918c7246f2 <__strcmp_sse2_unaligned+658>
+	=> 0x00007f918c72447a <+26>:	movdqu (%rdi),%xmm1	// Pad programu
+	   0x00007f918c72447e <+30>:	movdqu (%rsi),%xmm0
+	   ...
+
+Dalej si urobim disassemble funkcie kde bola strcmp volana, kde adresu a meno funkcie zistime z (gdb) bt
+#1  0x000000000040861b in iokey (action=action@entry=1) at top.c:1092
+Z coho mozem rovno vidiet ze funkcia iokey je volana s hodnotou argumentu 1
+
+Urobim disassemble tejto funkcie
+(gdb) disassemble 0x000000000040861b  a najdem volanie strcmp
+   ...
+   0x0000000000408616 <+598>:	callq  0x402620 <strcmp@plt>
+   ...
+
+Kedze viem ze strcmp sa vola v cykle tak z okolitych intrukcii viem zistit
+ze hodnota premennej v cykle sa inkrementuje v registry %rbx o 1, nasledne pred
+volanim strcmp sa presuva do %r12.
+
+   ...
+   0x00000000004085f8 <+568>:	add    $0x1,%rbx	// Inkrementacia premennej cyklu
+   0x00000000004085fc <+572>:	cmp    $0x1c,%rbx	// Test hodnoty kedy sa ma cyklus ukoncit
+   0x0000000000408600 <+576>:	je     0x408670 <iokey+688>	// Podmienka vyskocenia z cyklu
+   0x0000000000408602 <+578>:	mov    %rbx,%rax
+   0x0000000000408605 <+581>:	mov    %rbp,%rsi
+   0x0000000000408608 <+584>:	movslq %ebx,%r12
+   0x000000000040860b <+587>:	shl    $0x4,%rax		// bitovy posun o 4, cize vynasobenie hodnoty %rax o 0x10
+   0x000000000040860f <+591>:	mov    0x618660(%rax),%rdi
+   0x0000000000408616 <+598>:	callq  0x402620 <strcmp@plt>	// Volanie strcmp
+   0x000000000040861b <+603>:	test   %eax,%eax
+   0x000000000040861d <+605>:	jne    0x4085f8 <iokey+568>
+   ...
+
+Vo funkcii strcmp sa ani register %rbx, a ani %r12 neupravuju a register %r12 je non-volatile register
+takze jeho hodnota musi ostat zachovana pocas volania funkcie. Tak po vypisani registrov
+(gdb) info registers
+	rax            0x400	1024
+	rbx            0xa	10
+	rcx            0x0	0
+	rdx            0x0	0
+	rsi            0x619400	6394880
+	rdi            0x0	0
+	rbp            0x619400	0x619400 <buf>
+	rsp            0x7ffcbe455448	0x7ffcbe455448
+	r8             0x0	0
+	r9             0x7ffcbe455380	140723500700544
+	r10            0x682	1666
+	r11            0x246	582
+	r12            0xa	10
+	r13            0x7ffcbe455600	140723500701184
+	r14            0x0	0
+	r15            0x0	0
+	rip            0x7f918c72447a	0x7f918c72447a <__strcmp_sse2_unaligned+26>
+	...
+
+ziskame hodnotu jedneho registra, kde hodnota je 0xa cize 10, to znamena ze program padol v 10.iteracii cyklu.
+
+Ked viem ze program padol na presune hodnot
+	=> 0x00007f918c72447a <+26>:	movdqu (%rdi),%xmm1
+Tak z vypisu registrov rovno zistim ze %rdi obsahuje 0x0. Cize problem nastal pri dereferencii null.
+Podla kodu vyssie (disassemble 0x000000000040861b), viem zistit adresu z ktore sa citaju hodnoty a predavaju do %rdi.
+Taktiez je vidiet ze hodnota %rax sa kazdym cyklom zvysuje o 0x10.
+Cize vysledna adresa na ktorej budeme hladat nasu hodnotu je, pociatocny offset + hodnota o ktoru sa zvacsuje %eax a krat 10, kedze program padol v 10.iteracii cyklu.
+	(gdb) x/1xg 0x618660+0x10*10
+	0x618700 <tinfo_tab.9068+160>:	0x0000000000000000
+
+Z coho vidiet ako sa dostal null do registra %rdi .
+Argumenty s ktorymi bola funkcia strcmp volana su pre register %rdi 0x0, a %rsi 0x619400, kde pre
+%rsi si zistim presnu hodnotu
+	(gdb) x/1s 0x619400
+	0x619400 <buf.9069>:	"g"
+
+Na zaciatku pri vypise stack-u bolo vidiet ze nebola volana funkcia strcmp ktora sa nachadzala
+v disassemble kode funkcie iokey ale bola volana funkcia <__strcmp_sse2_unaligned>.
+Pri  (gdb) disassemble strcmp
+	0x00007f918c70e8c0 <+0>:	mov    0x335599(%rip),%rdx        # 0x7f918ca43e60
+	0x00007f918c70e8c7 <+7>:	lea    0x15b92(%rip),%rax        # 0x7f918c724460 
+	0x00007f918c70e8ce <+14>:	testl  $0x10,0xb0(%rdx)
+	0x00007f918c70e8d8 <+24>:	jne    0x7f918c70e8f4 <strcmp+52>
+	0x00007f918c70e8da <+26>:	lea    0xc42bf(%rip),%rax        # 0x7f918c7d2ba0 <__strcmp_ssse3>
+	0x00007f918c70e8e1 <+33>:	testl  $0x200,0x80(%rdx)
+	0x00007f918c70e8eb <+43>:	jne    0x7f918c70e8f4 <strcmp+52>
+	0x00007f918c70e8ed <+45>:	lea    0xc(%rip),%rax        # 0x7f918c70e900 <__strcmp_sse2>
+	0x00007f918c70e8f4 <+52>:	retq
+je vidiet ze sa tu funkcia  __strcmp_sse2_unaligned  nachadza a adresa tejto funkcie sa presuva do registra navratovych hodnot %rax.
+
+Urobim disassemble adresy kde sa nachadza funkcia strcmp.
+	...
+	0x0000000000408616 <+598>:	callq  0x402620 <strcmp@plt>
+	...
+
+	(gdb) disassemble 0x402620
+	Dump of assembler code for function strcmp@plt:
+	   0x0000000000402620 <+0>:	jmpq   *0x215bda(%rip)        # 0x618200
+	   0x0000000000402626 <+6>:	pushq  $0x3d
+	   0x000000000040262b <+11>:	jmpq   0x402240
+
+Kde z adresy 0x618200 sa nacita realna adresa funkcie ktore sa potom zavola:
+	(gdb) x/1xg 0x618200
+	0x618200:    0x00007f918c724460
+
+	(gdb) disassemble 0x00007f918c724460
+	Dump of assembler code for function __strcmp_sse2_unaligned:
+	   0x00007f918c724460 <+0>:	mov    %edi,%eax
+	   0x00007f918c724462 <+2>:	xor    %edx,%edx
+	   ...
+	   0x00007f918c724474 <+20>:	jg     0x7f918c7246f2 <__strcmp_sse2_unaligned+658>
+	=> 0x00007f918c72447a <+26>:	movdqu (%rdi),%xmm1
+	   0x00007f918c72447e <+30>:	movdqu (%rsi),%xmm0
+	   ...
+Takze v zavere sa vola funkcia __strcmp_sse2_unaligned .
+

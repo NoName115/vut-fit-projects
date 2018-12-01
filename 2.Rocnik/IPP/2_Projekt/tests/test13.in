@@ -1,0 +1,9 @@
+class A {
+    bool a;
+public:
+    float aa;
+};
+
+class B : public A {
+    int *b;
+};

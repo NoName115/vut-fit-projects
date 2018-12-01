@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="ISO-8859-1"?><pnml>
+<net id="Net-One" type="P/T net">
+<token id="Default" enabled="true" red="0" green="0" blue="0"/>
+<labels x="639" y="274" width="56" height="16" border="true">
+<text>7 minút</text>
+</labels>
+<labels x="646" y="181" width="56" height="16" border="true">
+<text>7 minút</text>
+</labels>
+<labels x="646" y="91" width="56" height="16" border="true">
+<text>7 minút</text>
+</labels>
+<labels x="421" y="91" width="101" height="16" border="true">
+<text>Exp(20 minút)</text>
+</labels>
+<labels x="361" y="181" width="191" height="16" border="true">
+<text>Rovnomerné (30-90 sekúnd)</text>
+</labels>
+<place id="Bez me&#353;ka&#328;ia">
+<graphics>
+<position x="390.0" y="225.0"/>
+</graphics>
+<name>
+<value>Bez me&#353;ka&#328;ia</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>0</value>
+</capacity>
+</place>
+<place id="Be&#382;né me&#353;kanie">
+<graphics>
+<position x="330.0" y="135.0"/>
+</graphics>
+<name>
+<value>Be&#382;né me&#353;kanie</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>0</value>
+</capacity>
+</place>
+<place id="Ladce - Tren&#269;ianská Teplá">
+<graphics>
+<position x="840.0" y="30.0"/>
+</graphics>
+<name>
+<value>Ladce - Tren&#269;ianská Teplá</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>0</value>
+</capacity>
+</place>
+<place id="P4">
+<graphics>
+<position x="540.0" y="45.0"/>
+</graphics>
+<name>
+<value>P4</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>0</value>
+</capacity>
+</place>
+<place id="P5">
+<graphics>
+<position x="540.0" y="135.0"/>
+</graphics>
+<name>
+<value>P5</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>0</value>
+</capacity>
+</place>
+<place id="Porucha">
+<graphics>
+<position x="330.0" y="45.0"/>
+</graphics>
+<name>
+<value>Porucha</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>0</value>
+</capacity>
+</place>
+<place id="Púchov  - Ladce tra&#357;">
+<graphics>
+<position x="120.0" y="150.0"/>
+</graphics>
+<name>
+<value>Púchov  - Ladce tra&#357;</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</name>
+<initialMarking>
+<value>Default,0</value>
+<graphics>
+<offset x="0.0" y="0.0"/>
+</graphics>
+</initialMarking>
+<capacity>
+<value>0</value>
+</capacity>
+</place>
+<transition id="0,03%">
+<graphics>
+<position x="225.0" y="60.0"/>
+</graphics>
+<name>
+<value>0,03%</value>
+<graphics>
+<offset x="-5.0" y="35.0"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="4,3%">
+<graphics>
+<position x="225.0" y="150.0"/>
+</graphics>
+<name>
+<value>4,3%</value>
+<graphics>
+<offset x="-5.0" y="35.0"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="95,67%">
+<graphics>
+<position x="225.0" y="240.0"/>
+</graphics>
+<name>
+<value>95,67%</value>
+<graphics>
+<offset x="-5.0" y="35.0"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>false</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="T3">
+<graphics>
+<position x="435.0" y="45.0"/>
+</graphics>
+<name>
+<value>T3</value>
+<graphics>
+<offset x="-5.0" y="35.0"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>true</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="T4">
+<graphics>
+<position x="435.0" y="135.0"/>
+</graphics>
+<name>
+<value>T4</value>
+<graphics>
+<offset x="-5.0" y="35.0"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>true</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="T5">
+<graphics>
+<position x="645.0" y="45.0"/>
+</graphics>
+<name>
+<value>T5</value>
+<graphics>
+<offset x="-5.0" y="35.0"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>true</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="T6">
+<graphics>
+<position x="645.0" y="135.0"/>
+</graphics>
+<name>
+<value>T6</value>
+<graphics>
+<offset x="-5.0" y="35.0"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>true</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<transition id="T7">
+<graphics>
+<position x="645.0" y="225.0"/>
+</graphics>
+<name>
+<value>T7</value>
+<graphics>
+<offset x="-5.0" y="35.0"/>
+</graphics>
+</name>
+<orientation>
+<value>0</value>
+</orientation>
+<rate>
+<value>1.0</value>
+</rate>
+<timed>
+<value>true</value>
+</timed>
+<infiniteServer>
+<value>false</value>
+</infiniteServer>
+<priority>
+<value>1</value>
+</priority>
+</transition>
+<arc id="0,03% to vá&#382;na porucha" source="0,03%" target="Porucha">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="241" y="72" curvePoint="false"/>
+<arcpath id="001" x="327" y="59" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="4,3% to be&#382;né me&#353;kanie" source="4,3%" target="Be&#382;né me&#353;kanie">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="241" y="162" curvePoint="false"/>
+<arcpath id="001" x="327" y="149" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="95,67% to Bez me&#353;ka&#328;ia" source="95,67%" target="Bez me&#353;ka&#328;ia">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="241" y="252" curvePoint="false"/>
+<arcpath id="001" x="387" y="238" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="Bez me&#353;ka&#328;ia to T7" source="Bez me&#353;ka&#328;ia" target="T7">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="416" y="237" curvePoint="false"/>
+<arcpath id="001" x="651" y="237" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="be&#382;né me&#353;kanie to T4" source="Be&#382;né me&#353;kanie" target="T4">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="356" y="147" curvePoint="false"/>
+<arcpath id="001" x="441" y="147" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="P4 to T5" source="P4" target="T5">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="566" y="57" curvePoint="false"/>
+<arcpath id="001" x="651" y="57" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="P5 to T6" source="P5" target="T6">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="566" y="147" curvePoint="false"/>
+<arcpath id="001" x="651" y="147" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="Púchov  - Ladce tra&#357; to 0,03%" source="Púchov  - Ladce tra&#357;" target="0,03%">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="142" y="151" curvePoint="false"/>
+<arcpath id="001" x="231" y="72" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="Púchov  - Ladce tra&#357; to 4,3%" source="Púchov  - Ladce tra&#357;" target="4,3%">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="146" y="162" curvePoint="false"/>
+<arcpath id="001" x="231" y="162" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="Púchov  - Ladce tra&#357; to 95,67%" source="Púchov  - Ladce tra&#357;" target="95,67%">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="142" y="172" curvePoint="false"/>
+<arcpath id="001" x="231" y="252" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="T3 to P4" source="T3" target="P4">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="451" y="57" curvePoint="false"/>
+<arcpath id="001" x="537" y="57" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="T4 to P5" source="T4" target="P5">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="451" y="147" curvePoint="false"/>
+<arcpath id="001" x="537" y="147" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="T5 to Ladce - Tren&#269;ianská Teplá" source="T5" target="Ladce - Tren&#269;ianská Teplá">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="661" y="57" curvePoint="false"/>
+<arcpath id="001" x="837" y="43" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="T6 to Ladce - Tren&#269;ianská Teplá" source="T6" target="Ladce - Tren&#269;ianská Teplá">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="661" y="147" curvePoint="false"/>
+<arcpath id="001" x="838" y="49" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="T7 to Ladce - Tren&#269;ianská Teplá" source="T7" target="Ladce - Tren&#269;ianská Teplá">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="661" y="237" curvePoint="false"/>
+<arcpath id="001" x="841" y="52" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+<arc id="vá&#382;na porucha to T3" source="Porucha" target="T3">
+<graphics/>
+<inscription>
+<value>Default,1</value>
+<graphics/>
+</inscription>
+<tagged>
+<value>false</value>
+</tagged>
+<arcpath id="000" x="356" y="57" curvePoint="false"/>
+<arcpath id="001" x="441" y="57" curvePoint="false"/>
+<type value="normal"/>
+</arc>
+</net>
+</pnml>

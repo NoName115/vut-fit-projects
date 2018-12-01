@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<class kind="concrete" name="B">
+    <inheritance>
+        <from name="A" privacy="public"/>
+    </inheritance>
+    <protected>
+        <methods>
+            <method name="f" scope="instance" type="int">
+                <from name="A"/>
+                <arguments>
+                    <argument name="x1" type="int"/>
+                    <argument name="x2" type="int"/>
+                </arguments>
+            </method>
+            <method name="f" scope="instance" type="int">
+                <from name="A"/>
+                <arguments>
+                    <argument name="x1" type="double"/>
+                </arguments>
+            </method>
+        </methods>
+    </protected>
+</class>

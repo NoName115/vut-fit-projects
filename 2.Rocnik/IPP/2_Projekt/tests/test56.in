@@ -1,0 +1,19 @@
+class A{
+    virtual int f() = 0;
+};
+
+class A1{
+    virtual int x() = 0;
+};
+
+
+class B :A{};
+
+class C:A{
+    int f() {};
+};
+
+class D:C{};
+
+
+class X:C, A1{};

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="C" kind="concrete">
+    <inheritance>
+        <from name="A" privacy="public" />
+        <from name="B" privacy="public" />
+    </inheritance>
+    <conflicts>
+        <member name="var">
+            <class name="A">
+                <public>
+                    <attribute name="var" type="int" scope="instance" />
+                </public>
+            </class>
+            <class name="B">
+                <private>
+                    <attribute name="var" type="float" scope="instance" />
+                </private>
+            </class>
+        </member>
+    </conflicts>
+</class>

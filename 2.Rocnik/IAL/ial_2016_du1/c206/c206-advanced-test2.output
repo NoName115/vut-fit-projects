@@ -1,0 +1,492 @@
+
+*******************
+[TEST 1]
+DLInitList
+-------------------
+Seznam je prázdný, ukazatele jsou správnì.
+-------------------
+
+*******************
+[TEST 2]
+DLDisposeList - pro prázdný seznam
+-------------------
+Seznam je prázdný, ukazatele jsou správnì.
+-------------------
+
+*******************
+[TEST 3]
+DLFirst - pro prázdný seznam
+-------------------
+Seznam je prázdný, ukazatele jsou správnì.
+-------------------
+
+*******************
+[TEST 4]
+DLLast - pro prázdný seznam
+-------------------
+Seznam je prázdný, ukazatele jsou správnì.
+-------------------
+
+*******************
+[TEST 5]
+DLCopyFirst - pro prázdný seznam
+*ERROR* The program has performed an illegal operation.
+Výsledek: -1
+Poslední operace hlásí chybu.
+-------------------
+Seznam je prázdný, ukazatele jsou správnì.
+-------------------
+
+*******************
+[TEST 6]
+DLCopyLast - pro prázdný seznam
+*ERROR* The program has performed an illegal operation.
+Výsledek: -1
+Poslední operace hlásí chybu.
+-------------------
+Seznam je prázdný, ukazatele jsou správnì.
+-------------------
+
+*******************
+[TEST 7]
+DLDeleteFirst - pro prázdný seznam
+-------------------
+Seznam je prázdný, ukazatele jsou správnì.
+-------------------
+
+*******************
+[TEST 8]
+DLDeleteLast - pro prázdný seznam
+-------------------
+Seznam je prázdný, ukazatele jsou správnì.
+-------------------
+
+*******************
+[TEST 9]
+DLInsertFirst - pro prázdný seznam
+-------------------
+Hodnota Ovìøení Aktivita
+1       OK      
+Ukazatel na aktivní prvek OK
+-------------------
+
+*******************
+[TEST 10]
+DLInsertFirst - pro neprázdný seznam
+-------------------
+Hodnota Ovìøení Aktivita
+2       OK      
+1       OK      
+Ukazatel na aktivní prvek OK
+-------------------
+
+*******************
+[TEST 11]
+DLInsertLast - pro neprázdný seznam
+-------------------
+Hodnota Ovìøení Aktivita
+2       OK      
+1       OK      
+3       OK      
+Ukazatel na aktivní prvek OK
+-------------------
+
+*******************
+[TEST 12]
+DLCopyFirst - pro neprázdný seznam
+Výsledek: 2
+-------------------
+Hodnota Ovìøení Aktivita
+2       OK      
+1       OK      
+3       OK      
+Ukazatel na aktivní prvek OK
+-------------------
+
+*******************
+[TEST 13]
+DLCopyLast - pro neprázdný seznam
+Výsledek: 3
+-------------------
+Hodnota Ovìøení Aktivita
+2       OK      
+1       OK      
+3       OK      
+Ukazatel na aktivní prvek OK
+-------------------
+
+*******************
+[TEST 14]
+DLCopy - pro neaktivní seznam
+*ERROR* The program has performed an illegal operation.
+Výsledek: -1
+Poslední operace hlásí chybu.
+-------------------
+Hodnota Ovìøení Aktivita
+2       OK      
+1       OK      
+3       OK      
+Ukazatel na aktivní prvek OK
+-------------------
+
+*******************
+[TEST 15]
+DLActualize - pro neaktivní seznam
+-------------------
+Hodnota Ovìøení Aktivita
+2       OK      
+1       OK      
+3       OK      
+Ukazatel na aktivní prvek OK
+-------------------
+
+*******************
+[TEST 16]
+DLSucc - pro neaktivní seznam
+-------------------
+Hodnota Ovìøení Aktivita
+2       OK      
+1       OK      
+3       OK      
+Ukazatel na aktivní prvek OK
+-------------------
+
+*******************
+[TEST 17]
+DLPred - pro neaktivní seznam
+-------------------
+Hodnota Ovìøení Aktivita
+2       OK      
+1       OK      
+3       OK      
+Ukazatel na aktivní prvek OK
+-------------------
+
+*******************
+[TEST 18]
+DLPostDelete - pro neaktivní seznam
+-------------------
+Hodnota Ovìøení Aktivita
+2       OK      
+1       OK      
+3       OK      
+Ukazatel na aktivní prvek OK
+-------------------
+
+*******************
+[TEST 19]
+DLPreDelete - pro neaktivní seznam
+-------------------
+Hodnota Ovìøení Aktivita
+2       OK      
+1       OK      
+3       OK      
+Ukazatel na aktivní prvek OK
+-------------------
+
+*******************
+[TEST 20]
+DLPostInsert - pro neaktivní seznam
+-------------------
+Hodnota Ovìøení Aktivita
+2       OK      
+1       OK      
+3       OK      
+Ukazatel na aktivní prvek OK
+-------------------
+
+*******************
+[TEST 21]
+DLPreInsert - pro neaktivní seznam
+-------------------
+Hodnota Ovìøení Aktivita
+2       OK      
+1       OK      
+3       OK      
+Ukazatel na aktivní prvek OK
+-------------------
+
+*******************
+[TEST 22]
+DLFirst - pro neprázdný seznam
+-------------------
+Hodnota Ovìøení Aktivita
+2       OK      Aktivní prvek
+1       OK      
+3       OK      
+Ukazatel na aktivní prvek OK
+-------------------
+
+*******************
+[TEST 23]
+DLCopy - pro aktivní seznam
+Výsledek: 2
+-------------------
+Hodnota Ovìøení Aktivita
+2       OK      Aktivní prvek
+1       OK      
+3       OK      
+Ukazatel na aktivní prvek OK
+-------------------
+
+*******************
+[TEST 24]
+DLActualize - pro aktivní seznam
+-------------------
+Hodnota Ovìøení Aktivita
+7       OK      Aktivní prvek
+1       OK      
+3       OK      
+Ukazatel na aktivní prvek OK
+-------------------
+
+*******************
+[TEST 25]
+DLSucc - pro aktivní seznam
+-------------------
+Hodnota Ovìøení Aktivita
+7       OK      
+1       OK      Aktivní prvek
+3       OK      
+Ukazatel na aktivní prvek OK
+-------------------
+
+*******************
+[TEST 26]
+DLPred - pro aktivní seznam
+-------------------
+Hodnota Ovìøení Aktivita
+7       OK      Aktivní prvek
+1       OK      
+3       OK      
+Ukazatel na aktivní prvek OK
+-------------------
+
+*******************
+[TEST 27]
+DLPred - pro aktivní první prvek seznamu
+-------------------
+Hodnota Ovìøení Aktivita
+7       OK      
+1       OK      
+3       OK      
+Ukazatel na aktivní prvek OK
+-------------------
+
+*******************
+[TEST 28]
+DLLast - pro neprázdný seznam
+-------------------
+Hodnota Ovìøení Aktivita
+7       OK      
+1       OK      
+3       OK      Aktivní prvek
+Ukazatel na aktivní prvek OK
+-------------------
+
+*******************
+[TEST 29]
+DLSucc - pro aktivní poslední prvek seznamu
+-------------------
+Hodnota Ovìøení Aktivita
+7       OK      
+1       OK      
+3       OK      
+Ukazatel na aktivní prvek OK
+-------------------
+
+Pøesouvám aktivitu seznamu na poslední prvek...
+
+*******************
+[TEST 30]
+DLPostInsert - pro aktivní poslední prvek seznamu
+-------------------
+Hodnota Ovìøení Aktivita
+7       OK      
+1       OK      
+3       OK      Aktivní prvek
+8       OK      
+Ukazatel na aktivní prvek OK
+-------------------
+
+*******************
+[TEST 31]
+DLPostInsert - uprostøed seznamu
+-------------------
+Hodnota Ovìøení Aktivita
+7       OK      
+1       OK      
+3       OK      Aktivní prvek
+9       OK      
+8       OK      
+Ukazatel na aktivní prvek OK
+-------------------
+
+Pøesouvám aktivitu seznamu na první prvek...
+
+*******************
+[TEST 32]
+DLPreInsert - pro aktivní první prvek seznamu
+-------------------
+Hodnota Ovìøení Aktivita
+10      OK      
+7       OK      Aktivní prvek
+1       OK      
+3       OK      
+9       OK      
+8       OK      
+Ukazatel na aktivní prvek OK
+-------------------
+
+*******************
+[TEST 33]
+DLPreInsert - uprostøed seznamu
+-------------------
+Hodnota Ovìøení Aktivita
+10      OK      
+11      OK      
+7       OK      Aktivní prvek
+1       OK      
+3       OK      
+9       OK      
+8       OK      
+Ukazatel na aktivní prvek OK
+-------------------
+
+Pøesouvám aktivitu seznamu na první prvek...
+
+*******************
+[TEST 34]
+DLDeleteFirst - pro neprázdný seznam, ma¾e se aktivní prvek
+-------------------
+Hodnota Ovìøení Aktivita
+11      OK      
+7       OK      
+1       OK      
+3       OK      
+9       OK      
+8       OK      
+Ukazatel na aktivní prvek OK
+-------------------
+
+Pøesouvám aktivitu seznamu na poslední prvek...
+
+*******************
+[TEST 35]
+DLDeleteLast - pro neprázdný seznam, ma¾e se aktivní prvek
+-------------------
+Hodnota Ovìøení Aktivita
+11      OK      
+7       OK      
+1       OK      
+3       OK      
+9       OK      
+Ukazatel na aktivní prvek OK
+-------------------
+
+Pøesouvám aktivitu seznamu na druhý prvek...
+
+*******************
+[TEST 36]
+DLPreDelete - ma¾e se první prvek seznamu
+-------------------
+Hodnota Ovìøení Aktivita
+7       OK      Aktivní prvek
+1       OK      
+3       OK      
+9       OK      
+Ukazatel na aktivní prvek OK
+-------------------
+
+*******************
+[TEST 37]
+DLPreDelete - aktivní první prvek seznamu
+-------------------
+Hodnota Ovìøení Aktivita
+7       OK      Aktivní prvek
+1       OK      
+3       OK      
+9       OK      
+Ukazatel na aktivní prvek OK
+-------------------
+
+Pøesouvám aktivitu seznamu na druhý prvek od konce...
+
+*******************
+[TEST 38]
+DLPostDelete - ma¾e se poslední prvek seznamu
+-------------------
+Hodnota Ovìøení Aktivita
+7       OK      
+1       OK      
+3       OK      Aktivní prvek
+Ukazatel na aktivní prvek OK
+-------------------
+
+*******************
+[TEST 39]
+DLPostDelete - aktivní poslední prvek seznamu
+-------------------
+Hodnota Ovìøení Aktivita
+7       OK      
+1       OK      
+3       OK      Aktivní prvek
+Ukazatel na aktivní prvek OK
+-------------------
+
+*******************
+[TEST 40]
+DLPreDelete - uprostøed seznamu
+-------------------
+Hodnota Ovìøení Aktivita
+7       OK      
+3       OK      Aktivní prvek
+Ukazatel na aktivní prvek OK
+-------------------
+
+Pøidávám prvek na konec seznamu...
+Pøesouvám aktivitu seznamu na první prvek...
+
+*******************
+[TEST 41]
+DLPostDelete - uprostøed seznamu
+-------------------
+Hodnota Ovìøení Aktivita
+7       OK      Aktivní prvek
+12      OK      
+Ukazatel na aktivní prvek OK
+-------------------
+
+*******************
+[TEST 42]
+DLDisposeList - pro neprázdný seznam
+-------------------
+Seznam je prázdný, ukazatele jsou správnì.
+-------------------
+
+*******************
+[TEST 43]
+DLInsertLast - pro prázdný seznam
+-------------------
+Hodnota Ovìøení Aktivita
+13      OK      
+Ukazatel na aktivní prvek OK
+-------------------
+
+Pøesouvám aktivitu seznamu na první prvek...
+
+*******************
+[TEST 44]
+DLDeleteFirst - mazání posledního prvku, prvek je aktivní
+-------------------
+Seznam je prázdný, ukazatele jsou správnì.
+-------------------
+
+Vkládám do seznamu prvek a nastavuji mu aktivitu...
+
+*******************
+[TEST 45]
+DLDeleteLast - mazání posledního prvku
+-------------------
+Seznam je prázdný, ukazatele jsou správnì.
+-------------------

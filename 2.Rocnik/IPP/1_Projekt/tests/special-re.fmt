@@ -1,0 +1,7 @@
+%s	underline
+%a+	teletype
+%d	size:2
+%l	size:3
+%L	size:4
+%w	italic
+%W	bold

@@ -1,0 +1,8 @@
+class A;
+class C {};
+class B : A {
+public:
+    A var;
+    C *f(A *x) {};
+};
+class D : protected B, C { int f(){};};

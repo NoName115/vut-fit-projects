@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="A" kind="abstract">
+    <private>
+        <methods>
+            <method name="f" type="int" scope="instance">
+                <virtual pure="yes" />
+                <arguments></arguments>
+            </method>
+        </methods>
+    </private>
+</class>

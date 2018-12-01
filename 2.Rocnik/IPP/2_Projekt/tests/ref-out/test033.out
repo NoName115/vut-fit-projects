@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<class kind="concrete" name="C">
+    <inheritance>
+        <from name="B" privacy="public"/>
+        <from name="A" privacy="public"/>
+    </inheritance>
+    <public>
+        <methods>
+            <method name="f" scope="instance" type="int">
+                <from name="B"/>
+                <arguments>
+                    <argument name="a" type="int"/>
+                </arguments>
+            </method>
+            <method name="f1" scope="instance" type="int">
+                <from name="B"/>
+                <arguments/>
+            </method>
+            <method name="f2" scope="instance" type="int">
+                <from name="A"/>
+                <arguments/>
+            </method>
+            <method name="f" scope="instance" type="int">
+                <from name="B"/>
+                <arguments>
+                    <argument name="a" type="int"/>
+                    <argument name="b" type="int"/>
+                </arguments>
+            </method>
+        </methods>
+    </public>
+</class>

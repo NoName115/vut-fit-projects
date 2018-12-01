@@ -1,0 +1,7 @@
+if a>b then
+	p = 89%
+else
+	p = 100%
+end if
+
+string s = "string evaluation test"

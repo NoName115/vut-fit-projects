@@ -1,0 +1,68 @@
+<?xml version="1.0" ?>
+<model>
+    <class kind="concrete" name="C">
+        <inheritance>
+            <from name="B" privacy="public"/>
+        </inheritance>
+        <public>
+            <methods>
+                <method name="f" scope="instance" type="int">
+                    <from name="B"/>
+                    <arguments/>
+                </method>
+            </methods>
+            <attributes>
+                <attribute name="x" scope="instance" type="int">
+                    <from name="A"/>
+                </attribute>
+            </attributes>
+        </public>
+    </class>
+    <class kind="concrete" name="B">
+        <inheritance>
+            <from name="A" privacy="public"/>
+        </inheritance>
+        <public>
+            <methods>
+                <method name="f" scope="instance" type="int">
+                    <arguments/>
+                </method>
+            </methods>
+            <attributes>
+                <attribute name="x" scope="instance" type="int">
+                    <from name="A"/>
+                </attribute>
+            </attributes>
+        </public>
+    </class>
+    <class kind="concrete" name="A">
+        <public>
+            <methods>
+                <method name="f" scope="instance" type="int">
+                    <arguments/>
+                </method>
+            </methods>
+            <attributes>
+                <attribute name="x" scope="instance" type="int"/>
+            </attributes>
+        </public>
+    </class>
+    <class kind="concrete" name="D">
+        <inheritance>
+            <from name="C" privacy="public"/>
+        </inheritance>
+        <public>
+            <methods>
+                <method name="f" scope="instance" type="int">
+                    <from name="B"/>
+                    <arguments/>
+                </method>
+            </methods>
+            <attributes>
+                <attribute name="x" scope="instance" type="int">
+                    <from name="A"/>
+                </attribute>
+            </attributes>
+        </public>
+    </class>
+</model>

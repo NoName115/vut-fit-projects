@@ -1,0 +1,9 @@
+class A {
+int a;
+};
+
+class B {
+float a;
+};
+
+class C : A, B {};

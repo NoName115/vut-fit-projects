@@ -1,0 +1,16 @@
+class A{
+    public:
+    int x(int f) {};
+};
+
+class B{
+    public:
+    int x(int z) {};
+};
+
+class C: public A, public B{
+};
+
+class D: public C{};
+
+class E: public D{};

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="Windows-1251"?>
+<orders>
+ <OrdersTransaction>
+   <Title>Office</Title>
+   <TotalAmt>600</TotalAmt>
+   <Item>
+     <IdNo>1111</IdNo>
+     <Description>Pen</Description>
+   </Item>
+   <Item>
+     <IdNo>1112</IdNo>
+     <Description>Pencil</Description>
+   </Item>
+   <Item>
+     <IdNo>1113</IdNo>
+     <Description>Marker</Description>
+   </Item>
+ </OrdersTransaction>
+ <OrdersTransaction>
+   <Title>Description</Title>
+   <TotalAmt>700</TotalAmt>
+   <Item>
+     <IdNo>1114</IdNo>
+     <Description>Eraser</Description>
+   </Item>
+   <Item>
+     <IdNo>1115</IdNo>
+     <Description>Ruler</Description>
+   </Item>
+   <Item>
+     <IdNo>1116</IdNo>
+     <Description>Highlighter</Description>
+   </Item>
+ </OrdersTransaction>
+</orders>

@@ -1,0 +1,13 @@
+class A{};
+class C {};
+class B : A {
+public:
+    double var;
+    int f(char x) {};
+    double var;
+    int f(char x) {}
+    double var;
+    int f(char x) {};
+    int f(char x) {}
+};
+class D : protected B, C {};

@@ -1,0 +1,8 @@
+%a*	teletype
+break|case|continue|default|do|else|for|goto|if|return|sizeof|switch|while	color:4433DD
+double|char|const|enum|float|int|long|register|short|signed|static|struct|union|unsigned|void|volatile|extern	color:DDAA33
+#!%n*	color:44DD33
+%(|%)|{|}|;|[|]	color:2222FF
+"!"*"	color:FF2222
+0x%d+|%d+|%d*.%d+|%d+.%d*	color:2222FF
+//!%n*	color:9977BB

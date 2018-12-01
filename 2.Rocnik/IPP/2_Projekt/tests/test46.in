@@ -1,0 +1,11 @@
+class A{
+    public:
+    int f(int x, int y) {};
+};
+
+class B: public A{
+};
+
+class C: public A, public B{
+    int f(int z, int hello) {};
+};

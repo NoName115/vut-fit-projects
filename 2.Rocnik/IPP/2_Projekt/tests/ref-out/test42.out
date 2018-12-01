@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<model>
+    <class kind="abstract" name="A">
+        <class kind="abstract" name="B">
+            <class kind="abstract" name="C"/>
+        </class>
+    </class>
+</model>

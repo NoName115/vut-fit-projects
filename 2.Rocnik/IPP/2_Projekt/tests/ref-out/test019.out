@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<model>
+    <class kind="concrete" name="C"/>
+    <class kind="concrete" name="B">
+        <inheritance>
+            <from name="A" privacy="private"/>
+        </inheritance>
+        <public>
+            <methods>
+                <method name="f" scope="static" type="int">
+                    <arguments/>
+                </method>
+            </methods>
+            <attributes>
+                <attribute name="var" scope="static" type="int"/>
+            </attributes>
+        </public>
+    </class>
+    <class kind="concrete" name="D">
+        <inheritance>
+            <from name="B" privacy="protected"/>
+            <from name="C" privacy="private"/>
+        </inheritance>
+        <private>
+            <methods>
+                <method name="f" scope="instance" type="int">
+                    <arguments/>
+                </method>
+            </methods>
+        </private>
+        <protected>
+            <attributes>
+                <attribute name="var" scope="static" type="int">
+                    <from name="B"/>
+                </attribute>
+            </attributes>
+        </protected>
+    </class>
+    <class kind="abstract" name="A">
+        <private>
+            <methods>
+                <method name="f" scope="instance" type="int">
+                    <virtual pure="yes"/>
+                    <arguments/>
+                </method>
+            </methods>
+        </private>
+    </class>
+</model>

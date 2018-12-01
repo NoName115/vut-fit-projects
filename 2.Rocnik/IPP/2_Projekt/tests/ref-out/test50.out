@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<class kind="concrete" name="B">
+    <inheritance>
+        <from name="A" privacy="public"/>
+    </inheritance>
+    <public>
+        <methods>
+            <method name="f" scope="static" type="int">
+                <from name="A"/>
+                <arguments/>
+            </method>
+        </methods>
+        <attributes>
+            <attribute name="x" scope="static" type="int">
+                <from name="A"/>
+            </attribute>
+        </attributes>
+    </public>
+</class>

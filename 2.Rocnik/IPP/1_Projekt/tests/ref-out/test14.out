@@ -1,0 +1,7 @@
+a<b>.</b>b<b>|</b>c<b>!</b>d<b>*</b>e<b>+</b>f<b>(</b>g<b>)</b>h<b>%</b>i[j]k
+test for set negation: [^a] 
+test for newline: \n 
+test for tab: \t "			" 
+test for start/end line: ^test$ 
+test for curly brace: a{3} aaa aaaaaaa
+test for any character: a? 

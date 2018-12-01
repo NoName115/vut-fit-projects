@@ -1,0 +1,24 @@
+<tt><font color=#44DD33>#include <stdio.h></font><br />
+<br />
+<font color=#9977BB>// test program</font><br />
+<br />
+<font color=#DDAA33>int</font> main<font color=#2222FF>(</font><font color=#2222FF>)</font> <font color=#2222FF>{</font><br />
+	<br />
+	<font color=#DDAA33>int</font> a = <font color=#2222FF>0x10</font><font color=#2222FF>;</font><br />
+	<font color=#DDAA33>float</font> b = <font color=#2222FF>20</font>.<font color=#2222FF>34</font><font color=#2222FF>;</font><br />
+	<font color=#DDAA33>char</font> c<font color=#2222FF>;</font><br />
+	<br />
+	<font color=#4433DD>if</font> <font color=#2222FF>(</font>a < b && b > <font color=#2222FF>10</font><font color=#2222FF>)</font> <font color=#2222FF>{</font><br />
+		pr<font color=#DDAA33>int</font>f<font color=#2222FF>(</font><font color=#FF2222>"A!\n"</font><font color=#2222FF>)</font><font color=#2222FF>;</font><br />
+	<font color=#2222FF>}</font> <font color=#4433DD>else</font> <font color=#2222FF>{</font><br />
+		pr<font color=#DDAA33>int</font>f<font color=#2222FF>(</font><font color=#FF2222>"B!\n"</font><font color=#2222FF>)</font><font color=#2222FF>;</font><br />
+	<font color=#2222FF>}</font><br />
+<br />
+	<font color=#4433DD>while</font><font color=#2222FF>(</font>a < b<font color=#2222FF>)</font> <font color=#2222FF>{</font><br />
+		a++<font color=#2222FF>;</font><br />
+	<font color=#2222FF>}</font><br />
+<br />
+	<font color=#4433DD>return</font> <font color=#2222FF>0</font><font color=#2222FF>;</font><br />
+<font color=#2222FF>}</font><br />
+<br />
+</tt>

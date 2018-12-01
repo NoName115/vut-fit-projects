@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="____" kind="abstract">
+    <inheritance>
+        <from name="classB" privacy="protected" />
+        <from name="a011a" privacy="private" />
+    </inheritance>
+    <protected>
+        <attributes>
+            <attribute name="Aa_00_b" type="int" scope="instance">
+                <from name="classB" />
+            </attribute>
+        </attributes>
+    </protected>
+</class>

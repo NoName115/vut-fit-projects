@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<class kind="abstract" name="D">
+    <inheritance>
+        <from name="B" privacy="protected"/>
+        <from name="C" privacy="private"/>
+    </inheritance>
+    <private>
+        <methods>
+            <method name="function" scope="instance" type="int">
+                <from name="C"/>
+                <arguments>
+                    <argument name="x" type="int"/>
+                    <argument name="y" type="int"/>
+                </arguments>
+            </method>
+        </methods>
+    </private>
+</class>

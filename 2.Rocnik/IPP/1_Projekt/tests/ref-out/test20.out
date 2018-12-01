@@ -1,0 +1,7 @@
+a.b|c!d*e+f(g)h%i[j]k
+test for set negation: <i>[^a]</i> 
+test for newline: <i>\n</i> 
+test for tab: <i>\t</i> "			" 
+test for start/end line: <i>^test$</i> 
+test for curly brace: <i>a{3}</i> aaa aaaaaaa
+test for any character: <i>a?</i> 

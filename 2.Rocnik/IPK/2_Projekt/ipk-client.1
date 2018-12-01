@@ -1,0 +1,34 @@
+.TH ipk\-client 1
+.SH NAME
+ipk-client \- solve simple math problem
+.SH SYNOPSIS
+.B ipk\-client
+.IR IPv4_IPv6_adress
+.SH DESCRIPTION
+.B ipk\-client
+communicate with server by TCP socket at port 55555.
+Client support +, \-, *, / operations.
+.SH MESSAGES
+Client send HELLO message at the beginning of communication.
+.br
+After recieving SOLVE message from server, client send RESULT message.
+.br
+Client end communication with server, when BYE message is recieved
+.br
+Message in wrong format is ignored.
+.LP
+.B HELLO
+[id]\\n
+.br
+.B SOLVE
+[number] [operation] [number]\\n
+.br
+.B RESULT
+[result]\\n
+.br
+.B BYE
+[secret]\\n
+.SH BUGS
+Client support only +, \-, *, / math operations!
+.SH AUTHOR
+Robert Kolcun, <xkolcu00@stud.fit.vutbr.cz>  

@@ -1,0 +1,12 @@
+class A {virtual int f(void) =0;};
+class B : A {
+public:
+    int function(int x, int y);
+};
+class C {
+public:
+    int function(int x, int y);
+};
+class D : protected B, C {
+  using C::function;
+};

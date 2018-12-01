@@ -1,0 +1,28 @@
+
+
+Facility Zi_DH("Žilina-Dolný Hričov"); Uniform(90,240) 0.89
+Facility DH_By("Dolný Hričov-Bytča"); nic
+Facility By_PB("Bytča-Považská Bystrica");  Uniform(60,240) 0.72
+Facility PB_Pu("Považská Bystrica-Púchov"); Uniform(60,120)  0.61
+Facility Pu_La("Púchov-Ladce"); Uniform(30,90) 0.043
+Facility La_TT("Ladce-Trenčianska Teplá"); 0.72  Uniform(30,60)
+Facility TT_Tn("Trenčianska Teplá-Trenčín"); 0.77  Uniform(30,60)
+Facility Tn_VN("Trenčín-Výh. Nivy"); 0.82    U(60,120)
+Facility VN_TB("Výh. Nivy-Trenčianske Bohuslavice"); nic
+Facility TB_NMNV("Trenčianske Bohuslavice-Nové Mesto nad Váhom"); 0.822 Uniform(30,60)
+Facility NMNV_Pie("Nové Mesto nad Váhom-Piešťany");  0.75 Uniform(30,60)
+Facility Pie_VK("Piešťany-Veľké Kostoľany");  tu pribera priemerne 6sekund
+Facility VK_Le("Veľké Kostoľany-Leopoldov"); tu pribera priemerne 11sekund
+Facility Le_Bre("Leopoldov-Brestovany"); 0.84 Uniform(30,90)
+Facility Bre_Tr("Brestovany-Trnava"); 0.735 Uniform(30,60)
+Facility Tr_Ci("Trnava-Cífer"); 0.75 Uniform(40,80)
+Facility Ci_Se("Cífer-Šenkvice"); Uniform(40,80) 0.71
+Facility Se_VSJ("Šenkvice-Výh. Svätý Jur"); 0.75 Uniform(40,60)
+Facility VSJ_Vi("Výh. Svätý JurOdb.-Vinohrady"); pribera 16sekund
+Facility Vi_Ba("Vinohrady-Bratislava hl stanica"); pribera 35sekund 
+
+1 celkovy kde budem vykreslovat priemer a maximum pre kazdy usek
+skratky pre trate a dole legendu
+
+300, 1100, 1400
+2 spojnice v jednom grafe, kde jedna je pre priemer a druhe pre maximum

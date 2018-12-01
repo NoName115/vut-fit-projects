@@ -1,0 +1,3 @@
+if|then|else	bold
+"(!"*)"	italic, color:FFFF44
+(100|%d%d|%d)%%	size:4, underline

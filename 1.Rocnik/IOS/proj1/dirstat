@@ -1,0 +1,112 @@
+#!/bin/bash
+
+# Prvy project IOS
+# Autor: Róbert Kolcún - FIT
+# Login: xkolcu00
+
+CESTA=$(readlink -f .)
+if test $# -eq 3
+then
+	if test "$1" = "-i"
+	then
+		CESTA=$3
+		IGNORE=$2
+	else
+		if test "$2" = "-i"
+		then
+			CESTA=$1
+			IGNORE=$3
+		else
+			exit 1
+		fi
+	fi
+else
+	if test $# -eq 2
+	then
+		CESTA=$(pwd)
+		if  test "$1" = "-i"
+		then
+			IGNORE=$2
+		else
+			exit 1
+		fi
+	else
+		if  test $# -eq 1
+		then
+			CESTA=$1
+		else
+			if test $# -eq 0
+			then
+				CESTA=$(pwd)
+			else
+				exit 1
+			fi
+		fi
+	fi
+fi
+
+LASTCHAR=$(echo -n $CESTA | tail -c 1)
+
+if test "$LASTCHAR" != "/"
+then
+	CESTA=$(echo "$CESTA/")	
+fi
+
+ND=$(find $CESTA -type d ! \( -iname "$IGNORE" \) 2>/dev/null | wc -l)
+NF=$(find $CESTA -type f ! \( -iname "$IGNORE" \) 2>/dev/null | wc -l)
+
+if test $NF = 0
+then
+	LF="N/A"
+	AS="N/A"
+	MS="N/A"
+	AF="0"
+else
+	LF=$(find $CESTA  -type f ! \( -iname "$IGNORE" \) 2>/dev/null -ls | awk '{print $7}' | sort -u -n | tail -1)
+	AS=$(find $CESTA  -type f ! \( -iname "$IGNORE" \) 2>/dev/null -ls | awk '{spol+=$7; k++} END {print int(spol / k)}')
+	MS=$(find $CESTA  -type f ! \( -iname "$IGNORE" \) 2>/dev/null -ls | awk '{print $7}' | sort -n | awk '{arr[NR]=$1} END {if (NR%2==1) print arr[(NR+1)/2]; else print int (arr[NR/2]+arr[NR/2+1])/2}')
+	AF=$((NF/ND))
+fi
+
+DD=$(find $CESTA -type d ! \( -iname "$IGNORE" \) 2>/dev/null -ls | awk '{print $11}' | tr -d -c '//\n' | awk '{print length}' | sort -u -n | tail -1)
+DDNEXT=$(echo "$CESTA" | tr -d -c '//\n' | awk '{print length}')
+DD=$((DD - DDNEXT + 1))
+
+if test $DD -lt 1
+then
+	echo "ERROR: Directory not found"
+	exit 1
+fi
+
+echo "Root directory:" $CESTA
+echo "Directories:" $ND
+echo "Max depth:" $DD
+echo "Average no. of file:" $AF
+echo "All files:" $NF
+echo "  Largest file:" $LF
+echo "  Average file size:" $AS
+echo "  File size median:" $MS
+
+EXT=$(find $CESTA -type f ! \( -iname "$IGNORE" \) 2>/dev/null | sed 's/.*\//\//' | sed 's/\/\./8/' | egrep -o "\.[A-Za-z0-9]{1,}$" | sort -u | sed 's/\./,/')
+EXT=$(echo $EXT | sed 's/^./ /')
+printf "File extensions: "
+for vypis in $(echo $EXT)
+do
+	printf "$vypis";
+done
+printf "\n"
+
+EXT=$(find $CESTA -type f ! \( -iname "$IGNORE" \) 2>/dev/null | sed 's/.*\//\//' | sed 's/\/\./8/' | egrep -o "\.[A-Za-z0-9]{1,}$" | sort -u)
+EXTALL=$(find $CESTA -type f ! \( -iname "$IGNORE" \) 2>/dev/null | sed 's/.*\//\//' | sed 's/\/\./8/' | egrep -o "\.[A-Za-z0-9]{1,}$" | sort)
+
+for p in $(echo $EXT)
+do
+	LEXT=$(find $CESTA -type f ! \( -iname "$IGNORE" \) 2>/dev/null -ls | grep "\\$p"$ | egrep -v $(echo "\.*\/\\"$p$) | rev | egrep "^[A-Za-z0-9]*?\." | rev | awk '{print $7}' | sort -u -n | tail -1)
+	NEXT=$(echo "$EXTALL" | grep "\\$p"$ | wc -l)
+	AEXT=$(find $CESTA  -type f ! \( -iname "$IGNORE" \) 2>/dev/null -ls | grep "\\$p"$ | egrep -v $(echo "\.*\/\\"$p$) | rev | egrep  "^[A-Za-z0-9]*?\." | rev | awk '{print $7}'| awk '{spol+=$1; k++} END {print int (spol / k)}')
+	MEXT=$(find $CESTA  -type f ! \( -iname "$IGNORE" \) 2>/dev/null -ls | grep "\\$p"$ | egrep -v $(echo "\.*\/\\"$p$) | rev | egrep  "^[A-Za-z0-9]*?\." | rev | awk '{print $7}'| sort -n | awk '{arr[NR]=$1} END {if (NR%2==1) print arr[(NR+1)/2]; else print int((arr[NR/2]+arr[NR/2+1])/2)}')
+	echo "Files" $p: $NEXT
+	echo "  Largest file" $p: $LEXT
+	echo "  Average file size" $p: $AEXT
+	echo "  File size median" $p: $MEXT
+done

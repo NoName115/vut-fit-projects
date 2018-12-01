@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<class kind="concrete" name="C">
+    <inheritance>
+        <from name="A" privacy="public"/>
+        <from name="B" privacy="public"/>
+    </inheritance>
+    <private>
+        <methods>
+            <method name="f" scope="instance" type="int">
+                <arguments>
+                    <argument name="z" type="int"/>
+                    <argument name="hello" type="int"/>
+                </arguments>
+            </method>
+        </methods>
+    </private>
+</class>

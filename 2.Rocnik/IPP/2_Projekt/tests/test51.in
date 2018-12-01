@@ -1,0 +1,22 @@
+class A{
+    bool b;
+    char c;
+    char16_t c16;
+    char32_t c32;
+    wchar_t wc;
+    signed char sc;
+    short int si;
+    int i;
+    long int li;
+    long long int lli;
+    unsigned char uc;
+    unsigned short int usi;
+    unsigned int ui;
+    unsigned long int uli;
+    unsigned long long int ulli;
+    float f;
+    double d;
+    long double ld;
+    int *iptr;
+    int &iref;
+};

@@ -1,0 +1,14 @@
+class A{
+    private:
+    int x;
+};
+
+class B: private A{
+};
+
+class C: private A{
+};
+
+class D: private B, private C{
+    int x;
+    };

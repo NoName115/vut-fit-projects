@@ -1,0 +1,9 @@
+class A{
+  public:
+    int x;
+    int f() {};
+};
+class B: public A{
+  int x;
+  int f() {};
+};

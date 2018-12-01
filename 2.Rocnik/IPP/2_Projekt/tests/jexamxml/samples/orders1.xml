@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<orders>
+ <OrdersTransaction>
+   <Title>Office</Title>
+   <TotalAmt>600</TotalAmt>
+   <Item>
+     <IdNo>1111</IdNo>
+     <Description>Pen</Description>
+   </Item>
+   <Item>
+     <IdNo>1112</IdNo>
+     <Description>Pencil</Description>
+   </Item>
+   <Item>
+     <IdNo>1113</IdNo>
+     <Description>Mark er</Description>
+   </Item>
+ </OrdersTransaction>
+ <OrdersTransaction>
+   <Title>Description</Title>
+   <TotalAmt>700</TotalAmt>
+   <Item>
+     <IdNo>1114</IdNo>
+     <Description>eraser</Description>
+   </Item>
+   <Item>
+     <IdNo>1115</IdNo>
+     <Description>Ruler</Description>
+     <comment>additional comments</comment>
+   </Item>
+   <Item>
+     <IdNo>1116</IdNo>
+     <Description>highlighter</Description>
+   </Item>
+ </OrdersTransaction>
+</orders>

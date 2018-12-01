@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<class kind="concrete" name="A">
+    <private>
+        <methods>
+            <method name="f" scope="instance" type="int">
+                <arguments/>
+            </method>
+        </methods>
+        <attributes>
+            <attribute name="x" scope="instance" type="int"/>
+        </attributes>
+    </private>
+</class>

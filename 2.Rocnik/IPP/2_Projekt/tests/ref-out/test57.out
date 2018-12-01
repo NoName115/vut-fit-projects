@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<class kind="concrete" name="C">
+    <private>
+        <attributes>
+            <attribute name="y" scope="instance" type="B *"/>
+            <attribute name="x" scope="instance" type="A"/>
+        </attributes>
+    </private>
+</class>

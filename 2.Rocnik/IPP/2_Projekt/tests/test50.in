@@ -1,0 +1,8 @@
+class A{
+    public:
+    static int x;
+    static int f(void) {};
+};
+
+class B: public A{
+};

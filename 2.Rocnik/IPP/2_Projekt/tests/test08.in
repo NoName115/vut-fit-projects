@@ -1,0 +1,12 @@
+class A {
+public:
+    int var;
+};
+class B {
+    public:
+    float var;
+};
+
+class C : public A, public B {
+    using B::var;
+};

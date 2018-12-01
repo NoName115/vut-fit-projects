@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<class kind="concrete" name="A">
+    <private>
+        <attributes>
+            <attribute scope="instance" type="bool" name="b"/>
+            <attribute scope="instance" type="char" name="c"/>
+            <attribute scope="instance" type="char16_t" name="c16"/>
+            <attribute scope="instance" type="char32_t" name="c32"/>
+            <attribute scope="instance" type="wchar_t" name="wc"/>
+            <attribute scope="instance" type="signed char" name="sc"/>
+            <attribute scope="instance" type="short int" name="si"/>
+            <attribute scope="instance" type="int" name="i"/>
+            <attribute scope="instance" type="long int" name="li"/>
+            <attribute scope="instance" type="long long int" name="lli"/>
+            <attribute scope="instance" type="unsigned char" name="uc"/>
+            <attribute scope="instance" type="unsigned short int" name="usi"/>
+            <attribute scope="instance" type="unsigned int" name="ui"/>
+            <attribute scope="instance" type="unsigned long int" name="uli"/>
+            <attribute scope="instance" type="unsigned long long int" name="ulli"/>
+            <attribute scope="instance" type="float" name="f"/>
+            <attribute scope="instance" type="double" name="d"/>
+            <attribute scope="instance" type="long double" name="ld"/>
+            <attribute scope="instance" type="int *" name="iptr"/>
+            <attribute scope="instance" type="int &amp;" name="iref"/>
+        </attributes>
+    </private>
+</class>

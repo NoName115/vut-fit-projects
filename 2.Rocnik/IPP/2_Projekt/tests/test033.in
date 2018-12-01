@@ -1,0 +1,18 @@
+class A{
+    public:
+    int f(int a, int b) {};
+    int f(int a) {};
+    int f2(void) {};
+};
+
+class B{
+    public:
+        int f(int a, int b) {};
+        int f(int a) {};
+        int f1(void) {};
+};
+
+class C: public A, public B{
+    public:
+        using B::f;
+};

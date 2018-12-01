@@ -1,0 +1,6 @@
+class A{
+int f() {};
+int f(int x) {};
+int f(int x, int y) {};
+int f(double x) {};
+};

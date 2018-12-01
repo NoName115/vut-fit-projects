@@ -1,0 +1,133 @@
+Pomocou nastroja crash si otvorim pripraveny crashdump  $ gdb vmcore vmlinux  .
+
+Vypiseme si list procesov  crash> ps
+...
+   6269   6259   0  ffff88007bf19c80  IN   0.1   92524   2680  (sd-pam)
+   6287    754   0  ffff880079f25580  IN   0.2  120568   4260  bash
+>  9486   6287   0  ffff880079835580  RU   0.1    7588   1392  ethtool
+z kade vieme zistit ktory program na procesore bezal - ethtool
+
+Pomocou  crash> bt  vidime na ktorom systemovom volani program spadol
+...
+#17 [ffff88007bd1be88] do_vfs_ioctl at ffffffff812176e3
+#18 [ffff88007bd1bf10] sys_ioctl at ffffffff81217c99			// systemove volanie
+#19 [ffff88007bd1bf50] entry_SYSCALL_64_fastpath at ffffffff816d219b
+    RIP: 00007f41a2062ce7  RSP: 00007ffe7c6696c8  RFLAGS: 00000246
+    RAX: ffffffffffffffda  RBX: 000055cb5c3d8890  RCX: 00007f41a2062ce7
+    RDX: 00007ffe7c6698b0  RSI: 0000000000008946  RDI: 0000000000000003
+    RBP: 00007ffe7c6698a0   R8: 00007ffe7c6698b0   R9: 0000000000000003
+    R10: 00007f41a20acb30  R11: 0000000000000246  R12: 00007ffe7c669a18
+    R13: 000055cb5c611e60  R14: 000055cb5c3f58c8  R15: 0000000000000001
+    ORIG_RAX: 0000000000000010  CS: 0033  SS: 002b
+....
+
+Vieme ze argumenty sa predavaju v registroch %rdi, %rsi, %rdx, %rcx, %r8, %r9
+takze z bt, vieme vycitat hodnoty argumentov pre %rdi = 0x00000003, %rsi = 0x00008946
+Dalsi register ako %rdx uz osahuje nejaky ukazovatel do pamate.
+
+Po prehladavani dokumentačných stránoch na internete
+(https://android.googlesource.com/platform/external/sepolicy/+/cbaa2b7d37c0810009cc0ffa4026334b4bf3096e/ioctl_defines)
+Som nasiel define pre hodnotu argumentu 0x00008946 - define(`SIOCETHTOOL', `0x00008946'), ktory
+sa pravdepodobne pouziva pri sietovej komunikacii.
+
+Proces vykonal systemove volanie ioctl().
+
+Z  crash> bt  zistime kde system padol
+...
+#10 [ffff88007bd1bb90] page_fault at ffffffff816d3172
+    [exception RIP: unknown or invalid address]
+    RIP: 0000000000000000  RSP: ffff88007bd1bc40  RFLAGS: 00010246
+    RAX: ffff88007bd31118  RBX: 0000000000000000  RCX: 0000000000000000
+    RDX: ffffffffa0038900  RSI: 0000000000000004  RDI: ffff880036c10000
+    RBP: ffff88007bd1bc48   R8: 0000000000000000   R9: ffff88007bd31118
+    R10: 00007f41a20acb30  R11: 0000000000000246  R12: ffff880036c10000
+    R13: ffff88007bd31118  R14: 0000000000000010  R15: 0000000000000004
+    ORIG_RAX: ffffffffffffffff  CS: 0010  SS: 0018
+#11 [ffff88007bd1bc40] __ethtool_get_sset_count at ffffffff815ce76e
+...
+K padu doslo pre neplatnu adresu RIP (null).
+Argumenty volania funkcie __ethtool_get_sset_count je mozne vycitat z registrov %rdi a %rsi.
+Ako vidime podla disassemblu tejto funkcie (vid. nizzsie) ako sa s registrami pracuje tak ani jeden nezmeni svoju hodnutu do padu, vzhladom na to ze aj na riadok
+   0xffffffff815ce770 <__ethtool_get_sset_count+80>:       mov    0x7b0(%rdi),%rdi
+sa funkcie nedostane kvoli jumpu (vysvetlene nizsie).
+
+Pri dis adresy ffffffff815ce76e -> #11 [ffff88007bd1bc40] __ethtool_get_sset_count at ffffffff815ce76e
+   crash> dis ffffffff815ce76e
+   0xffffffff815ce76e <__ethtool_get_sset_count+78>:       pop    %rbp
+zistim kde funcia __ethtool_get_sset_count skoncila.
+
+Disassemble tejto funkcie:
+crash> dis __ethtool_get_sset_count
+0xffffffff815ce720 <__ethtool_get_sset_count>:  data32 data32 data32 xchg %ax,%ax [FTRACE NOP]
+0xffffffff815ce725 <__ethtool_get_sset_count+5>:        push   %rbp
+0xffffffff815ce726 <__ethtool_get_sset_count+6>:        cmp    $0x4,%esi
+0xffffffff815ce729 <__ethtool_get_sset_count+9>:        mov    0x208(%rdi),%rdx
+0xffffffff815ce730 <__ethtool_get_sset_count+16>:       mov    %rsp,%rbp
+0xffffffff815ce733 <__ethtool_get_sset_count+19>:       je     0xffffffff815ce768 <__ethtool_get_sset_count+72>
+0xffffffff815ce735 <__ethtool_get_sset_count+21>:       cmp    $0x5,%esi
+0xffffffff815ce738 <__ethtool_get_sset_count+24>:       mov    $0x2,%eax
+0xffffffff815ce73d <__ethtool_get_sset_count+29>:       je     0xffffffff815ce766 <__ethtool_get_sset_count+70>
+0xffffffff815ce73f <__ethtool_get_sset_count+31>:       cmp    $0x6,%esi
+0xffffffff815ce742 <__ethtool_get_sset_count+34>:       mov    $0x3,%eax
+0xffffffff815ce747 <__ethtool_get_sset_count+39>:       je     0xffffffff815ce766 <__ethtool_get_sset_count+70>
+0xffffffff815ce749 <__ethtool_get_sset_count+41>:       cmp    $0x7,%esi
+0xffffffff815ce74c <__ethtool_get_sset_count+44>:       je     0xffffffff815ce770 <__ethtool_get_sset_count+80>
+0xffffffff815ce74e <__ethtool_get_sset_count+46>:       mov    0xe0(%rdx),%rax
+0xffffffff815ce755 <__ethtool_get_sset_count+53>:       test   %rax,%rax
+0xffffffff815ce758 <__ethtool_get_sset_count+56>:       je     0xffffffff815ce783 <__ethtool_get_sset_count+99>
+0xffffffff815ce75a <__ethtool_get_sset_count+58>:       cmpq   $0x0,0xa8(%rdx)
+0xffffffff815ce762 <__ethtool_get_sset_count+66>:       je     0xffffffff815ce783 <__ethtool_get_sset_count+99>
+0xffffffff815ce764 <__ethtool_get_sset_count+68>:       callq  *%rax
+0xffffffff815ce766 <__ethtool_get_sset_count+70>:       pop    %rbp
+0xffffffff815ce767 <__ethtool_get_sset_count+71>:       retq   
+0xffffffff815ce768 <__ethtool_get_sset_count+72>:       callq  *0xe0(%rdx)
+0xffffffff815ce76e <__ethtool_get_sset_count+78>:       pop    %rbp
+0xffffffff815ce76f <__ethtool_get_sset_count+79>:       retq
+0xffffffff815ce770 <__ethtool_get_sset_count+80>:       mov    0x7b0(%rdi),%rdi
+0xffffffff815ce777 <__ethtool_get_sset_count+87>:       test   %rdi,%rdi
+0xffffffff815ce77a <__ethtool_get_sset_count+90>:       je     0xffffffff815ce783 <__ethtool_get_sset_count+99>
+0xffffffff815ce77c <__ethtool_get_sset_count+92>:       callq  0xffffffff815ce250 <phy_get_sset_count>
+0xffffffff815ce781 <__ethtool_get_sset_count+97>:       pop    %rbp
+0xffffffff815ce782 <__ethtool_get_sset_count+98>:       retq   
+0xffffffff815ce783 <__ethtool_get_sset_count+99>:       mov    $0xffffffa1,%eax
+0xffffffff815ce788 <__ethtool_get_sset_count+104>:      pop    %rbp
+0xffffffff815ce789 <__ethtool_get_sset_count+105>:      retq
+
+Vidim ze to muselo padnut pri volani adresy z %rdx:
+    0xffffffff815ce768 <__ethtool_get_sset_count+72>:       callq  *0xe0(%rdx)
+
+Pred tymto volanim vidim ze je tiez retq takze na adresu 0xffffffff815ce768 <__ethtool_get_sset_count+72>
+sa bolo potrebne dostat skokom, je vidno ze takyto skok sa tu nachadza:
+    0xffffffff815ce733 <__ethtool_get_sset_count+19>:       je     0xffffffff815ce768 <__ethtool_get_sset_count+72>
+Skok je vykonany pri podmienke equal, nad skokom vidime porovnanie registra %rsi s hodnotou $0x4.
+Z  crash> bt (vid. vyssie) je vidno ze register RSI na spodnych 16-bitoch obsahuje hodnotu $0x4 takze skok sa musel vykonat.
+Kedze sa do padu do registru %rsi nepriradzovali ziadne hodnoty, mozeme si byt isty ze hodnota je spravna.
+
+tim padom viem povedat ze hodnota do %rdx sa dostala zo struktury ktora bola ulozena v %rdi:
+0xffffffff815ce729 <__ethtool_get_sset_count+9>:        mov    0x208(%rdi),%rdx
+
+Pre zistenie hodnot si z internetu zistime s akymi argumentami je volana funkcia __ethtool_get_sset_count(struct net_devide *dev, in sset). Struktura je ulozena na adrese registra %rdi, kedze prvy argument je predavany v registry %rdi.
+Pomocou  crash> struct -xo net_device  zistime element struktury podla offset-u ktory nas zaujima
+vzhladom na  0xffffffff815ce729 <__ethtool_get_sset_count+9>:        mov    0x208(%rdi),%rdx
+...
+  [0x200] const struct net_device_ops *netdev_ops;
+  [0x208] const struct ethtool_ops *ethtool_ops;
+  [0x210] const struct ndisc_ops *ndisc_ops;
+...
+Aktualne mame meno struktury ktora je v %rdx, hodnotu registra %rdx, staci nam zistit hodnotu elementu tejto struktury podla offset-u  0xffffffff815ce768 <__ethtool_get_sset_count+72>:       callq  *0xe0(%rdx)
+
+Pomocou  crash> struct -xo ethtool_ops zistime nazov premennej ktora nas zaujima
+...
+   [0xd8] int (*set_priv_flags)(struct net_device *, u32);
+   [0xe0] int (*get_sset_count)(struct net_device *, int);	// Toto nas zaujima
+   [0xe8] int (*get_rxnfc)(struct net_device *, struct ethtool_rxnfc *, u32 *);
+...
+Nasledne  crash> struct ethtool_ops ffffffffa0038900  ziskame aj hodnotu tejto premennej.
+...
+  set_priv_flags = 0x0, 
+  get_sset_count = 0x0, 
+  get_rxnfc = 0x0, 
+...
+V zavere vidime z kade prisla hodnota 0x0.
+
+

@@ -1,0 +1,8 @@
+class A {virtual int f(void) =0;};
+class C {};
+class B : A {
+public:
+    A var;
+    C *f(A *x) {};
+};
+class D : protected B, C { int f(){};};

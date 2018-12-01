@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<model>
+    <class kind="concrete" name="B">
+        <inheritance>
+            <from name="A" privacy="public"/>
+        </inheritance>
+        <public>
+            <methods>
+                <method name="f" scope="instance" type="int">
+                    <from name="A"/>
+                    <arguments/>
+                </method>
+                <method name="~B" scope="instance" type="void">
+                    <arguments/>
+                </method>
+                <method name="B" scope="instance" type="void">
+                    <arguments/>
+                </method>
+            </methods>
+        </public>
+    </class>
+    <class kind="concrete" name="A">
+        <public>
+            <methods>
+                <method name="f" scope="instance" type="int">
+                    <arguments/>
+                </method>
+                <method name="A" scope="instance" type="void">
+                    <arguments/>
+                </method>
+                <method name="A" scope="instance" type="void">
+                    <arguments>
+                        <argument name="x" type="int"/>
+                        <argument name="y" type="int"/>
+                    </arguments>
+                </method>
+                <method name="~A" scope="instance" type="void">
+                    <arguments/>
+                </method>
+                <method name="A" scope="instance" type="void">
+                    <arguments>
+                        <argument name="x" type="int"/>
+                    </arguments>
+                </method>
+            </methods>
+        </public>
+    </class>
+</model>

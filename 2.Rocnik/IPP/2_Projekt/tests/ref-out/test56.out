@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<model>
+    <class kind="abstract" name="A1">
+        <class kind="abstract" name="X"/>
+    </class>
+    <class kind="abstract" name="A">
+        <class kind="concrete" name="C">
+            <class kind="concrete" name="D"/>
+            <class kind="abstract" name="X"/>
+        </class>
+        <class kind="abstract" name="B"/>
+    </class>
+</model>
